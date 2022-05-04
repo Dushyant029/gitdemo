@@ -1,0 +1,135 @@
+
+SQL*Plus: Release 11.2.0.4.0 Production on Mon Mar 21 08:16:49 2022
+
+Copyright (c) 1982, 2013, Oracle.  All rights reserved.
+
+Enter user-name: RA1911033010029/RA1911033010029@3.232.175.251:1521/ORCL
+
+Connected to:
+Oracle Database 19c Enterprise Edition Release 19.0.0.0.0 - Production
+
+SQL> spool on
+SQL> spool exp7b.lst
+
+SQL> create table Emp2(empno number(5), ename varchar2(20), job varchar2(20), sal number(6), mgrno number(4), deptno number(3));
+
+Table created.
+
+SQL> desc emp2;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMPNO                                              NUMBER(5)
+ ENAME                                              VARCHAR2(20)
+ JOB                                                VARCHAR2(20)
+ SAL                                                NUMBER(6)
+ MGRNO                                              NUMBER(4)
+ DEPTNO                                             NUMBER(3)
+
+SQL> desc emp2;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMPNO                                              NUMBER(5)
+ ENAME                                              VARCHAR2(20)
+ JOB                                                VARCHAR2(20)
+ SAL                                                NUMBER(6)
+ MGRNO                                              NUMBER(4)
+ DEPTNO                                             NUMBER(3)
+
+SQL> insert into emp2 values(1001,'Mahesh','Programmer',15000,1560,200);
+
+1 row created.
+
+SQL> insert into emp2 values(1002,'Manoj','Tester',12000,1560,200);
+
+1 row created.
+
+SQL> insert into emp2 values(1003,'Karthik','Programmer',13000,1400,201);
+
+1 row created.
+
+SQL> insert into emp2 values(1004,'Naresh','Clerk',1400,1400,201);
+
+1 row created.
+
+SQL> insert into emp2 values(1005,'Mani','Tester',13000,1400,200);
+
+1 row created.
+
+SQL> insert into emp2 values(1006,'Viki','Designer',12500,1560,201);
+
+1 row created.
+
+SQL> insert into emp2 values(1007,'Mohan','Designer',14000,1560,201);
+
+1 row created.
+
+SQL> insert into emp2 values(1008,'Naveen','Creation',20000,1400,201);
+
+1 row created.
+
+SQL> insert into emp2 values(1009,'Prasad','Dir',20000,1560,202);
+
+1 row created.
+
+SQL> insert into emp2 values(1010,'Agnesh','Dir',15000,1400,200);
+
+1 row created.
+
+SQL> Create table dept2(deptno number(3), deptname varchar2(10), location varchar2(15));
+
+Table created.
+
+SQL> insert into dept2 values(107,'Develop','Adyar');
+
+1 row created.
+
+SQL> insert into dept2 values(201,'Debug','Uk');
+
+1 row created.
+
+SQL> insert into dept2 values(200,'Test','Us');
+
+1 row created.
+
+SQL> insert into dept2 values(201,'Test','Ussr');
+
+1 row created.
+
+SQL> insert into dept2 values(108,'Debug','Adyar');
+
+1 row created.
+
+SQL> insert into dept2 values(109,'Build','Potheri');
+
+1 row created.
+
+SQL> select * from dept2;
+
+    DEPTNO DEPTNAME   LOCATION
+---------- ---------- ---------------
+       107 Develop    Adyar
+       201 Debug      Uk
+       200 Test       Us
+       201 Test       Ussr
+       108 Debug      Adyar
+       109 Build      Potheri
+
+6 rows selected.
+
+SQL> select ename from Emp2 where sal>(select Min(sal) from Emp2 where deptno=(select deptno from dept2 where location='Uk'));
+
+ENAME
+--------------------
+Mahesh
+Manoj
+Karthik
+Mani
+Viki
+Mohan
+Naveen
+Prasad
+Agnesh
+
+9 rows selected.
+
+SQL> spool off

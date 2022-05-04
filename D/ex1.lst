@@ -1,0 +1,237 @@
+SQL> create table t1(id number(2),name char(30),age char(5),salary decimal(10,2),joindate date, phno number(10));
+
+Table created.
+
+SQL> insert into t1 values(101,'Dushyant',20,5000.00,'2022-01-29','1234567890');
+insert into t1 values(101,'Dushyant',20,5000.00,'2022-01-29','1234567890')
+                      *
+ERROR at line 1:
+ORA-01438: value larger than specified precision allowed for this column 
+
+
+SQL> insert into t1 values(1,'Dushyant',20,5000.00,'2022-01-29','1234567890');
+insert into t1 values(1,'Dushyant',20,5000.00,'2022-01-29','1234567890')
+                                              *
+ERROR at line 1:
+ORA-01861: literal does not match format string 
+
+
+SQL> insert into t1 values(1,'Dushyant',20,5000.00,date '2022-01-29','1234567890');
+
+1 row created.
+
+SQL> select * from t1;
+
+        ID NAME                           AGE       SALARY JOINDATE        PHNO 
+---------- ------------------------------ ----- ---------- --------- ---------- 
+         1 Dushyant                       20          5000 29-JAN-22 1234567890 
+
+SQL> insert into t1 values(2,'Raju',21,5020.00,date '2022-01-31','1234566590');
+
+1 row created.
+
+SQL> select * from t1;
+
+        ID NAME                           AGE       SALARY JOINDATE        PHNO 
+---------- ------------------------------ ----- ---------- --------- ---------- 
+         1 Dushyant                       20          5000 29-JAN-22 1234567890 
+         2 Raju                           21          5020 31-JAN-22 1234566590 
+
+SQL> insert into t1 values(3,'Kaju',25,15000.00,date '2021-12-20','0213456987');
+
+1 row created.
+
+SQL> select * from t1;
+
+        ID NAME                           AGE       SALARY JOINDATE        PHNO 
+---------- ------------------------------ ----- ---------- --------- ---------- 
+         1 Dushyant                       20          5000 29-JAN-22 1234567890 
+         2 Raju                           21          5020 31-JAN-22 1234566590 
+         3 Kaju                           25         15000 20-DEC-21  213456987 
+
+SQL> insert into t1 values(3,'Saju',16,4950.00,date '2022-01-05','7412589603');
+
+1 row created.
+
+SQL> select * from t1;
+
+        ID NAME                           AGE       SALARY JOINDATE        PHNO 
+---------- ------------------------------ ----- ---------- --------- ---------- 
+         1 Dushyant                       20          5000 29-JAN-22 1234567890 
+         2 Raju                           21          5020 31-JAN-22 1234566590 
+         3 Kaju                           25         15000 20-DEC-21  213456987 
+         3 Saju                           16          4950 05-JAN-22 7412589603 
+
+SQL> update t1 set id=4 where name='Saju';
+
+1 row updated.
+
+SQL> select * from t1;
+
+        ID NAME                           AGE       SALARY JOINDATE        PHNO 
+---------- ------------------------------ ----- ---------- --------- ---------- 
+         1 Dushyant                       20          5000 29-JAN-22 1234567890 
+         2 Raju                           21          5020 31-JAN-22 1234566590 
+         3 Kaju                           25         15000 20-DEC-21  213456987 
+         4 Saju                           16          4950 05-JAN-22 7412589603 
+
+SQL> insert into t1 values(5,'Baju',25,6051.00,date '2022-01-30','8526341797');
+
+1 row created.
+
+SQL> select * from t1;
+
+        ID NAME                           AGE       SALARY JOINDATE        PHNO 
+---------- ------------------------------ ----- ---------- --------- ---------- 
+         1 Dushyant                       20          5000 29-JAN-22 1234567890 
+         2 Raju                           21          5020 31-JAN-22 1234566590 
+         3 Kaju                           25         15000 20-DEC-21  213456987 
+         4 Saju                           16          4950 05-JAN-22 7412589603 
+         5 Baju                           25          6051 30-JAN-22 8526341797 
+
+SQL> alter table t1 add address varchar(90);
+
+Table altered.
+
+SQL> select * from t1;
+
+        ID NAME                           AGE       SALARY JOINDATE        PHNO 
+---------- ------------------------------ ----- ---------- --------- ---------- 
+ADDRESS                                                                         
+--------------------------------------------------------------------------------
+         1 Dushyant                       20          5000 29-JAN-22 1234567890 
+                                                                                
+                                                                                
+         2 Raju                           21          5020 31-JAN-22 1234566590 
+                                                                                
+                                                                                
+         3 Kaju                           25         15000 20-DEC-21  213456987 
+                                                                                
+                                                                                
+
+        ID NAME                           AGE       SALARY JOINDATE        PHNO 
+---------- ------------------------------ ----- ---------- --------- ---------- 
+ADDRESS                                                                         
+--------------------------------------------------------------------------------
+         4 Saju                           16          4950 05-JAN-22 7412589603 
+                                                                                
+                                                                                
+         5 Baju                           25          6051 30-JAN-22 8526341797 
+                                                                                
+                                                                                
+
+SQL> alter table t1 modify address char(90);
+
+Table altered.
+
+SQL> desc t1;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ID                                                 NUMBER(2)
+ NAME                                               CHAR(30)
+ AGE                                                CHAR(5)
+ SALARY                                             NUMBER(10,2)
+ JOINDATE                                           DATE
+ PHNO                                               NUMBER(10)
+ ADDRESS                                            CHAR(90)
+
+SQL> rename t1 to tb1;
+
+Table renamed.
+
+SQL> select * from t1;
+select * from t1
+              *
+ERROR at line 1:
+ORA-00942: table or view does not exist 
+
+
+SQL> select * from tb1;
+
+        ID NAME                           AGE       SALARY JOINDATE        PHNO 
+---------- ------------------------------ ----- ---------- --------- ---------- 
+ADDRESS                                                                         
+--------------------------------------------------------------------------------
+         1 Dushyant                       20          5000 29-JAN-22 1234567890 
+                                                                                
+                                                                                
+         2 Raju                           21          5020 31-JAN-22 1234566590 
+                                                                                
+                                                                                
+         3 Kaju                           25         15000 20-DEC-21  213456987 
+                                                                                
+                                                                                
+
+        ID NAME                           AGE       SALARY JOINDATE        PHNO 
+---------- ------------------------------ ----- ---------- --------- ---------- 
+ADDRESS                                                                         
+--------------------------------------------------------------------------------
+         4 Saju                           16          4950 05-JAN-22 7412589603 
+                                                                                
+                                                                                
+         5 Baju                           25          6051 30-JAN-22 8526341797 
+                                                                                
+                                                                                
+
+SQL> delete from tb1 where age<20;
+
+1 row deleted.
+
+SQL> select * from tb1;
+
+        ID NAME                           AGE       SALARY JOINDATE        PHNO 
+---------- ------------------------------ ----- ---------- --------- ---------- 
+ADDRESS                                                                         
+--------------------------------------------------------------------------------
+         1 Dushyant                       20          5000 29-JAN-22 1234567890 
+                                                                                
+                                                                                
+         2 Raju                           21          5020 31-JAN-22 1234566590 
+                                                                                
+                                                                                
+         3 Kaju                           25         15000 20-DEC-21  213456987 
+                                                                                
+                                                                                
+
+        ID NAME                           AGE       SALARY JOINDATE        PHNO 
+---------- ------------------------------ ----- ---------- --------- ---------- 
+ADDRESS                                                                         
+--------------------------------------------------------------------------------
+         5 Baju                           25          6051 30-JAN-22 8526341797 
+                                                                                
+                                                                                
+
+SQL> alter table t1 modify name char(15);
+alter table t1 modify name char(15)
+*
+ERROR at line 1:
+ORA-00942: table or view does not exist 
+
+
+SQL> alter table tb1 modify name char(15);
+alter table tb1 modify name char(15)
+                       *
+ERROR at line 1:
+ORA-01441: cannot decrease column length because some value is too big 
+
+
+SQL> truncate table tb1;
+
+Table truncated.
+
+SQL> select * from tb1;
+
+no rows selected
+
+SQL> drop table tb1;
+
+Table dropped.
+
+SQL> select * from tb1;
+select * from tb1
+              *
+ERROR at line 1:
+ORA-00942: table or view does not exist 
+
+
+SQL> spool off

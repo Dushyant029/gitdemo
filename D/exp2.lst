@@ -1,0 +1,119 @@
+
+
+SQL> create table t2(id number(2),name char(30), age char(5),salary decimal(10,2));
+
+Table created.
+
+SQL> insert into t2 values('&id','&name','&age','&salary');
+Enter value for id: 01
+Enter value for name: Dushyant
+Enter value for age: 20
+Enter value for salary: 12000
+old   1: insert into t2 values('&id','&name','&age','&salary')
+new   1: insert into t2 values('01','Dushyant','20','12000')
+
+1 row created.
+
+SQL> /
+Enter value for id: 02
+Enter value for name: Raju
+Enter value for age: 21
+Enter value for salary: 21000
+old   1: insert into t2 values('&id','&name','&age','&salary')
+new   1: insert into t2 values('02','Raju','21','21000')
+
+1 row created.
+
+SQL> /
+Enter value for id: 03
+Enter value for name: Kaju
+Enter value for age: 19
+Enter value for salary: 23000
+old   1: insert into t2 values('&id','&name','&age','&salary')
+new   1: insert into t2 values('03','Kaju','19','23000')
+
+1 row created.
+
+SQL> /
+Enter value for id: 04
+Enter value for name: Saju
+Enter value for age: 17
+Enter value for salary: 10000
+old   1: insert into t2 values('&id','&name','&age','&salary')
+new   1: insert into t2 values('04','Saju','17','10000')
+
+1 row created.
+
+SQL> /
+Enter value for id: 05
+Enter value for name: Ramu
+Enter value for age: 22
+Enter value for salary: 25000
+old   1: insert into t2 values('&id','&name','&age','&salary')
+new   1: insert into t2 values('05','Ramu','22','25000')
+
+1 row created.
+
+SQL> select * from t2;
+
+        ID NAME                           AGE       SALARY                      
+---------- ------------------------------ ----- ----------                      
+         1 Dushyant                       20         12000                      
+         2 Raju                           21         21000                      
+         3 Kaju                           19         23000                      
+         4 Saju                           17         10000                      
+         5 Ramu                           22         25000                      
+
+SQL> update t2 set salary=30000 where id=1;
+
+1 row updated.
+
+SQL> select * from t2;
+
+        ID NAME                           AGE       SALARY                      
+---------- ------------------------------ ----- ----------                      
+         1 Dushyant                       20         30000                      
+         2 Raju                           21         21000                      
+         3 Kaju                           19         23000                      
+         4 Saju                           17         10000                      
+         5 Ramu                           22         25000                      
+
+SQL> delete from t2 where id=5;
+
+1 row deleted.
+
+SQL> select * from t2;
+
+        ID NAME                           AGE       SALARY                      
+---------- ------------------------------ ----- ----------                      
+         1 Dushyant                       20         30000                      
+         2 Raju                           21         21000                      
+         3 Kaju                           19         23000                      
+         4 Saju                           17         10000                      
+
+SQL> select name from t2 order by name asc;
+
+NAME                                                                            
+------------------------------                                                  
+Dushyant                                                                        
+Kaju                                                                            
+Raju                                                                            
+Saju                                                                            
+
+SQL> select * from t2 order by name dsc;
+select * from t2 order by name dsc
+                               *
+ERROR at line 1:
+ORA-00933: SQL command not properly ended 
+
+
+SQL> select * from t2 order by name desc;
+
+        ID NAME                           AGE       SALARY                      
+---------- ------------------------------ ----- ----------                      
+         4 Saju                           17         10000                      
+         2 Raju                           21         21000                      
+         3 Kaju                           19         23000                      
+         1 Dushyant                       20         30000                      
+
+SQL> spool off

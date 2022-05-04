@@ -1,0 +1,268 @@
+
+SQL> create table t3(id number(2),name char(30), age char(5),salary decimal(10,2));
+
+Table created.
+
+SQL> insert into t3 values('&id','&name','&age','&salary');
+Enter value for id: 01
+Enter value for name: Dushyant
+Enter value for age: 20
+Enter value for salary: 120000
+old   1: insert into t3 values('&id','&name','&age','&salary')
+new   1: insert into t3 values('01','Dushyant','20','120000')
+
+1 row created.
+
+SQL> /
+Enter value for id: 02
+Enter value for name: Raju
+Enter value for age: 23
+Enter value for salary: 250000
+old   1: insert into t3 values('&id','&name','&age','&salary')
+new   1: insert into t3 values('02','Raju','23','250000')
+
+1 row created.
+
+SQL> /
+Enter value for id: 03
+Enter value for name: Saju
+Enter value for age: 21
+Enter value for salary: 123000
+old   1: insert into t3 values('&id','&name','&age','&salary')
+new   1: insert into t3 values('03','Saju','21','123000')
+
+1 row created.
+
+SQL> /
+Enter value for id: 04
+Enter value for name: Kaju
+Enter value for age: 24
+Enter value for salary: 254000
+old   1: insert into t3 values('&id','&name','&age','&salary')
+new   1: insert into t3 values('04','Kaju','24','254000')
+
+1 row created.
+
+SQL> /
+Enter value for id: 05
+Enter value for name: Ranu
+Enter value for age: 21
+Enter value for salary: 30000
+old   1: insert into t3 values('&id','&name','&age','&salary')
+new   1: insert into t3 values('05','Ranu','21','30000')
+
+1 row created.
+
+SQL> select * from t3;
+
+        ID NAME                           AGE       SALARY
+---------- ------------------------------ ----- ----------
+         1 Dushyant                       20        120000
+         2 Raju                           23        250000
+         3 Saju                           21        123000
+         4 Kaju                           24        254000
+         5 Ranu                           21         30000
+
+SQL> Select Name from t3 where Age>19;
+
+NAME
+------------------------------
+Dushyant
+Raju
+Saju
+Kaju
+Ranu
+
+SQL> Select Name from t3 where Age>19 AND Salary>250000;
+
+NAME
+------------------------------
+Kaju
+
+SQL> Select Name from t3 where Age>19 OR Salary>250000;
+
+NAME
+------------------------------
+Dushyant
+Raju
+Saju
+Kaju
+Ranu
+
+SQL> Select Name from t3 where Age>24 OR Salary>250000;
+
+NAME
+------------------------------
+Kaju
+
+SQL> Select Name from t3 where Age>23 OR Salary>250000;
+
+NAME
+------------------------------
+Kaju
+
+SQL> Select Name from t3 where Age>22 OR Salary>250000;
+
+NAME
+------------------------------
+Raju
+Kaju
+
+SQL> Select * from t3 where Name Like '%ju';
+
+no rows selected
+
+SQL> Select * from t3 where Name Like '%u';
+
+no rows selected
+
+SQL> Select * from t3 where Name Like 'A%';
+
+no rows selected
+
+SQL> Select * from t3 where Name Like='A%';
+Select * from t3 where Name Like='A%'
+                                *
+ERROR at line 1:
+ORA-00936: missing expression
+
+
+SQL> Select * from t3 where Name Like 'R';
+
+no rows selected
+
+SQL> Select Name from t3 where Name Like 'R%';
+
+NAME
+------------------------------
+Raju
+Ranu
+
+SQL> Select * from t3 Limit 2;
+Select * from t3 Limit 2
+                       *
+ERROR at line 1:
+ORA-00933: SQL command not properly ended
+
+
+SQL> Select * from t3 limit 3;
+Select * from t3 limit 3
+                       *
+ERROR at line 1:
+ORA-00933: SQL command not properly ended
+
+
+SQL> Select * from t3 where id limit 3;
+Select * from t3 where id limit 3
+                          *
+ERROR at line 1:
+ORA-00920: invalid relational operator
+
+
+SQL> Select id from t3 where id limit 3;
+Select id from t3 where id limit 3
+                           *
+ERROR at line 1:
+ORA-00920: invalid relational operator
+
+
+SQL> Select id from t3 order by Name asc;
+
+        ID
+----------
+         1
+         4
+         2
+         5
+         3
+
+SQL> Select * from t3 order by Name desc;
+
+        ID NAME                           AGE       SALARY
+---------- ------------------------------ ----- ----------
+         3 Saju                           21        123000
+         5 Ranu                           21         30000
+         2 Raju                           23        250000
+         4 Kaju                           24        254000
+         1 Dushyant                       20        120000
+
+SQL> SELECT COUNT(CustomerID), Country
+  2  FROM Customers
+  3  GROUP BY Country
+  4  HAVING COUNT(CustomerID) > 5;^Z
+
+  5  ;
+HAVING COUNT(CustomerID) > 5;→
+                            *
+ERROR at line 4:
+ORA-00933: SQL command not properly ended
+
+
+SQL> Select count(salary) from t3 group by Name having count(id)>2;
+
+no rows selected
+
+SQL> Select count(salary),Name from t3 group by Name having count(id)>2;
+
+no rows selected
+
+SQL> Select count(salary),Name from t3 group by Name having count(salary)>2;
+
+no rows selected
+
+SQL> Select count(id),Name from t3 group by Name having count(id)>2;
+
+no rows selected
+
+SQL> Select * from t3 group by Name having count(id)>2;
+Select * from t3 group by Name having count(id)>2
+       *
+ERROR at line 1:
+ORA-00979: not a GROUP BY expression
+
+
+SQL> Select id,name,salary,age from t3 group by age having count(age)>=2;
+Select id,name,salary,age from t3 group by age having count(age)>=2
+       *
+ERROR at line 1:
+ORA-00979: not a GROUP BY expression
+
+
+SQL> Select id,name,salary,age from t3 Group By age Having count(age)>=2;
+Select id,name,salary,age from t3 Group By age Having count(age)>=2
+       *
+ERROR at line 1:
+ORA-00979: not a GROUP BY expression
+
+
+SQL> Select Sum(Salary),Name from t3 Group by Name Having Sum(Salary)>20000;
+
+SUM(SALARY) NAME
+----------- ------------------------------
+     120000 Dushyant
+     250000 Raju
+     123000 Saju
+     254000 Kaju
+      30000 Ranu
+
+SQL> Select Sum(Salary),Name from t3 Group by Name;
+
+SUM(SALARY) NAME
+----------- ------------------------------
+     120000 Dushyant
+     250000 Raju
+     123000 Saju
+     254000 Kaju
+      30000 Ranu
+
+SQL> Select Distinct Name from t3;
+
+NAME
+------------------------------
+Dushyant
+Raju
+Saju
+Kaju
+Ranu
+
+SQL> spool off

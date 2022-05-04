@@ -1,0 +1,218 @@
+
+SQL*Plus: Release 11.2.0.4.0 Production on Mon Mar 21 08:16:49 2022
+
+Copyright (c) 1982, 2013, Oracle.  All rights reserved.
+
+Enter user-name: RA1911033010029/RA1911033010029@3.232.175.251:1521/ORCL
+
+Connected to:
+Oracle Database 19c Enterprise Edition Release 19.0.0.0.0 - Production
+
+SQL> spool on
+SQL> spool exp7a.lst
+SQL> select upper('dushyant') from dual;
+
+UPPER('D
+--------
+DUSHYANT
+
+SQL> select lower('RAJU') from dual;
+
+LOWE
+----
+raju
+
+SQL> select initcap('dbms lab') from dual;
+
+INITCAP(
+--------
+Dbms Lab
+
+SQL> select ltrim('     dbms') from dual;
+
+LTRI
+----
+dbms
+
+SQL> select rtrim('dbms    ') from dual;
+
+RTRI
+----
+dbms
+
+SQL> select rtrim('     dbms    ') from dual;
+
+RTRIM('DB
+---------
+     dbms
+
+SQL> select concat('DBMS','Lab') from dual;
+
+CONCAT(
+-------
+DBMSLab
+
+SQL> Select length('dushyant') from dual;
+
+LENGTH('DUSHYANT')
+------------------
+                 8
+
+SQL> select replace('COA lab','COA','DBMS') from dual;
+
+REPLACE(
+--------
+DBMS lab
+
+SQL> select substr('DBMS',7,6) from dual;
+
+S
+-
+
+
+SQL> select substr('DBMS',3,2) from dual;
+
+SU
+--
+MS
+
+SQL> select rpad('Dbms',2,'*') from dual;
+
+RP
+--
+Db
+
+SQL> select lpad('Dbms',4,'*') from dual;
+
+LPAD
+----
+Dbms
+
+SQL> select replace('Raju','u''a') from dual;
+
+REPL
+----
+Raju
+
+SQL> select replace('Raju','u','a') from dual;
+
+REPL
+----
+Raja
+
+SQL> select translate('class','ss','ws') from dual;
+
+TRANS
+-----
+claww
+
+SQL> select translate('class','ss','ws') from dual;
+
+TRANS
+-----
+claww
+
+SQL> select sysdate from dual;
+
+SYSDATE
+---------
+21-MAR-22
+
+SQL> select round(sysdate) from dual;
+
+ROUND(SYS
+---------
+21-MAR-22
+
+SQL> select add_months(sysdate,4) from dual;
+
+ADD_MONTH
+---------
+21-JUL-22
+
+SQL> select last_day(sysdate) from dual;
+
+LAST_DAY(
+---------
+31-MAR-22
+
+SQL> select sysdate+20 from dual;
+
+SYSDATE+2
+---------
+10-APR-22
+
+SQL> select next_day(sysdate,'tuesday') from dual;
+
+NEXT_DAY(
+---------
+22-MAR-22
+
+SQL> select round(15.6789) from dual;
+
+ROUND(15.6789)
+--------------
+            16
+
+SQL> select ceil(23.20) from dual;
+
+CEIL(23.20)
+-----------
+         24
+
+SQL> select floor(34.56) from dual;
+
+FLOOR(34.56)
+------------
+          34
+
+SQL> select trunc(15.56743) from dual
+  2  ;
+
+TRUNC(15.56743)
+---------------
+             15
+
+SQL> select sign(-345) from dual;
+
+SIGN(-345)
+----------
+        -1
+
+SQL> select abs(-70) from dual;
+
+  ABS(-70)
+----------
+        70
+
+SQL> select abs(45) from dual;
+
+   ABS(45)
+----------
+        45
+
+SQL> select power(10,12) from dual;
+
+POWER(10,12)
+------------
+  1.0000E+12
+
+SQL> select mod(11,5) from dual;
+
+ MOD(11,5)
+----------
+         1
+
+SQL> select exp(10) from dual;
+
+   EXP(10)
+----------
+22026.4658
+
+SQL> select sqrt(225) from dual;
+
+ SQRT(225)
+----------
+        15
+
+SQL> spool off

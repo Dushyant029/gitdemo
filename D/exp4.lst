@@ -1,0 +1,148 @@
+SQL> create table mart(store varchar2(15), sales number(6), tax_date date);
+
+Table created.
+
+SQL> insert into mart values('Rolex', 120,to_date('2022-1-12','yyyy-mm-dd'));
+
+1 row created.
+
+SQL> insert into mart values('Chanel', 90,to_date('2021-11-05','yyyy-mm-dd'));
+
+1 row created.
+
+SQL> insert into mart values('Versace', 67,to_date('2021-11-18','yyyy-mm-dd'));
+
+1 row created.
+
+SQL> insert into mart values('Louis Vuitton', 150,to_date('2019-08-26','yyyy-mm-dd'));
+
+1 row created.
+
+SQL> insert into mart values('Balenciaga', 105,to_date('2019-06-12','yyyy-mm-dd'));
+
+1 row created.
+
+SQL> select * from mart;
+
+STORE                SALES TAX_DATE                                             
+--------------- ---------- ---------                                            
+Rolex                  120 12-JAN-22                                            
+Chanel                  90 05-NOV-21                                            
+Versace                 67 18-NOV-21                                            
+Louis Vuitton          150 26-AUG-19                                            
+Balenciaga             105 12-JUN-19                                            
+
+SQL> create table loc(area varchar2(10), store varchar2(15));
+
+Table created.
+
+SQL> insert into loc values('North','Rolex');
+
+1 row created.
+
+SQL> insert into loc values('West','Chanel');
+
+1 row created.
+
+SQL> insert into loc values('West','Versace');
+
+1 row created.
+
+SQL> insert into loc values('South','Louis Vuitton');
+
+1 row created.
+
+SQL> insert into loc values('East','Balenciaga');
+
+1 row created.
+
+SQL> select * from loc;
+
+AREA       STORE                                                                
+---------- ---------------                                                      
+North      Rolex                                                                
+West       Chanel                                                               
+West       Versace                                                              
+South      Louis Vuitton                                                        
+East       Balenciaga                                                           
+
+SQL> select store from mart where exists (select * from loc where loc.store = mart.store and mart.sales>120);
+
+STORE                                                                           
+---------------                                                                 
+Louis Vuitton                                                                   
+
+SQL> select store, case store when 'versace' then sales*2 else sales end "updt-sales" ,tax_date from mart;
+
+STORE           updt-sales TAX_DATE                                             
+--------------- ---------- ---------                                            
+Rolex                  120 12-JAN-22                                            
+Chanel                  90 05-NOV-21                                            
+Versace                 67 18-NOV-21                                            
+Louis Vuitton          150 26-AUG-19                                            
+Balenciaga             105 12-JUN-19                                            
+
+SQL> select store, case store when 'Versace' then sales*2 else sales end "updt-sales" ,tax_date from mart;
+
+STORE           updt-sales TAX_DATE                                             
+--------------- ---------- ---------                                            
+Rolex                  120 12-JAN-22                                            
+Chanel                  90 05-NOV-21                                            
+Versace                134 18-NOV-21                                            
+Louis Vuitton          150 26-AUG-19                                            
+Balenciaga             105 12-JUN-19                                            
+
+SQL> create table map(sno number(5) not null auto_increment,places char(40));
+create table map(sno number(5) not null auto_increment,places char(40))
+                                        *
+ERROR at line 1:
+ORA-00907: missing right parenthesis 
+
+
+SQL> create table map(sno int not null auto_increment,places char(40));
+create table map(sno int not null auto_increment,places char(40))
+                                  *
+ERROR at line 1:
+ORA-00907: missing right parenthesis 
+
+
+SQL> create table map(sno int not null Auto_Increment,places char(40));
+create table map(sno int not null Auto_Increment,places char(40))
+                                  *
+ERROR at line 1:
+ORA-00907: missing right parenthesis 
+
+
+SQL> SELECT * FROM mart FETCH FIRST 3 ROWS ONLY;
+
+STORE                SALES TAX_DATE                                             
+--------------- ---------- ---------                                            
+Rolex                  120 12-JAN-22                                            
+Chanel                  90 05-NOV-21                                            
+Versace                 67 18-NOV-21                                            
+
+SQL> Select store from mart intersect select store from loc;
+
+STORE                                                                           
+---------------                                                                 
+Balenciaga                                                                      
+Chanel                                                                          
+Louis Vuitton                                                                   
+Rolex                                                                           
+Versace                                                                         
+
+SQL> Select store from mart minus select store from loc;
+
+no rows selected
+
+SQL> Select store from mart Union select store from loc;
+
+STORE                                                                           
+---------------                                                                 
+Balenciaga                                                                      
+Chanel                                                                          
+Louis Vuitton                                                                   
+Rolex                                                                           
+Versace                                                                         
+
+SQL> spool off
