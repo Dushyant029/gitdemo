@@ -1,0 +1,501 @@
+Hello World
+
+DECLARE
+message varchar2(20):= 'Hello, World!';
+BEGIN
+dbms_output.put_line(message);
+END;
+/
+
+
+Add two numbers
+
+Declare
+Var1 integer;
+Var2 integer;
+Var3 integer;
+Begin
+Var1:=&var1;
+Var2:=&var2;
+Var3:=var1+var2;
+Dbms_output.put_line(var3);
+End;
+/
+
+
+Prime no.
+
+declare
+n number;
+i number;
+flag number;
+ 
+begin
+i:=2;
+flag:=1;
+n:=&n;
+ 
+for i in 2..n/2
+loop
+if mod(n,i)=0
+then
+flag:=0;
+exit;
+end if;
+end loop;
+ 
+if flag=1
+then
+dbms_output.put_line('prime');
+else
+dbms_output.put_line('not prime');
+end if;
+end;
+/
+
+
+Factorial no.
+
+declare
+n number;
+fac number:=1;
+i number;
+ 
+begin
+n:=&n;
+ 
+for i in 1..n
+loop
+fac:=fac*i;
+end loop;
+ 
+dbms_output.put_line('factorial='||fac);
+end;
+/
+
+
+Print Table
+
+declare
+n number;
+i number;
+ 
+begin
+n:=&n;
+for i in 1..10
+loop
+dbms_output.put_line(n||' x '||i||' = '||n*i);
+end loop;
+end;
+/
+
+
+Reverse no.
+
+declare
+n number;
+i number;
+rev number:=0;
+r number;
+ 
+begin
+n:=&n;
+while n>0
+loop
+r:=mod(n,10);
+rev:=(rev*10)+r;
+n:=trunc(n/10);
+end loop;
+ 
+dbms_output.put_line('reverse is '||rev);
+ 
+end;
+/
+
+
+Fibonacci Series
+
+declare
+first number:=0;
+second number:=1;
+third number;
+n number:=&n;
+i number;
+ 
+begin
+dbms_output.put_line('Fibonacci series is:');
+dbms_output.put_line(first);
+dbms_output.put_line(second);
+ 
+for i in 2..n
+loop
+third:=first+second;
+first:=second;
+second:=third;
+dbms_output.put_line(third);
+end loop;
+end;
+/
+
+
+Odd or Even
+
+declare
+n number:=&n;
+ 
+begin
+if mod(n,2)=0
+then
+dbms_output.put_line('number is even');
+else
+dbms_output.put_line('number is odd');
+end if;
+end;
+/
+
+
+Reverse string
+
+declare
+str1 varchar2(50):='&str';
+str2 varchar2(50);
+len number;
+i number;
+ 
+begin
+len:=length(str1);
+for i in reverse 1..len
+loop
+str2:=str2 || substr(str1,i,1);
+end loop;
+dbms_output.put_line('Reverse of String is:'||str2);
+end;
+/
+
+
+Palindrome
+
+declare
+    n number;
+    m number;
+    rev number:=0;
+    r number;
+begin
+    n:=12321;
+    m:=n;
+    while n>0
+    loop
+        r:=mod(n,10);
+        rev:=(rev*10)+r;
+        n:=trunc(n/10);
+    end loop;
+    
+    if m=rev
+    then
+        dbms_output.put_line('number is palindrome');
+    else
+        dbms_output.put_line('number is not palindrome');
+    end if;
+end;
+/
+
+
+Swap two numbers
+
+declare
+    a number;
+    b number;
+    temp number;
+ 
+begin
+    a:=5;
+    b:=10;
+    
+    dbms_output.put_line('before swapping:');
+    dbms_output.put_line('a='||a||' b='||b);
+    
+    temp:=a;
+    a:=b;
+    b:=temp;
+    
+    dbms_output.put_line('after swapping:');
+    dbms_output.put_line('a='||a||' b='||b);
+    
+end;
+/
+
+
+Armstrong no.
+
+declare
+    n number:=407;
+    s number:=0;
+    r number;
+    len number;
+    m number;
+begin
+    m:=n;
+ 
+    len:=length(to_char(n));
+    
+    while n>0
+    loop
+        r:=mod(n,10);
+        s:=s+power(r,len);
+        n:=trunc(n/10);
+    end loop;
+    
+    if m=s
+    then
+        dbms_output.put_line('armstrong number');
+    else
+        dbms_output.put_line('not armstrong number');
+    end if;
+    
+end;
+/
+
+
+Greatest 3 nos.
+
+declare
+a number:=10;
+b number:=12;
+c number:=5;
+begin
+dbms_output.put_line('a='||a||' b='||b||' c='||c);
+if a>b AND a>c
+then
+dbms_output.put_line('a is greatest');
+else
+if b>a AND b>c
+then
+dbms_output.put_line('b is greatest');
+else
+dbms_output.put_line('c is greatest');
+end if;
+end if;
+end;
+/
+
+
+Print patterns
+
+*
+**
+***
+****
+*****
+
+declare
+n number:=5;
+i number;
+j number;
+begin
+for i in 1..n
+loop
+for j in 1..i
+loop
+dbms_output.put('*');
+end loop;
+dbms_output.new_line;
+end loop;
+end;
+/
+
+*****
+****
+***
+**
+*
+
+declare
+n number:=5;
+i number;
+j number;
+begin
+for i in reverse 1..n
+loop
+for j in 1..i
+loop
+dbms_output.put('*');
+end loop;
+dbms_output.new_line;
+end loop;
+end;
+/
+
+1
+2
+3
+4
+5
+    *
+   **
+  ***
+****
+*****
+
+declare
+n number:=5;
+i number;
+j number;
+k number;
+begin
+for i in 1..n
+loop
+for j in 1..n-i
+loop
+dbms_output.put(' ');
+end loop;
+ 
+for k in 1..i
+loop
+dbms_output.put('*');
+end loop;
+dbms_output.new_line;
+end loop;
+end;
+/
+
+*****
+****
+  ***
+   **
+    *
+
+declare
+n number:=5;
+i number;
+j number;
+k number;
+begin
+for i in reverse 1..n
+loop
+for j in 1..n-i
+loop
+dbms_output.put(' ');
+end loop;
+ 
+for k in 1..i
+loop
+dbms_output.put('*');
+end loop;
+dbms_output.new_line;
+end loop;
+end;
+/
+
+    *
+   ***
+  *****
+*******
+*********
+
+declare
+n number:=10;
+i number:=1;
+j number;
+k number;
+begin
+while i<n
+loop
+j:=1;
+while j<n-i
+loop
+dbms_output.put(' ');
+j:=j+2;
+end loop;
+ 
+for k in 1..i
+loop
+dbms_output.put('*');
+end loop;
+dbms_output.new_line;
+i:=i+2;
+end loop;
+end;
+/
+
+*********
+*******
+  *****
+   ***
+    *
+
+declare
+i number:=9;
+j number;
+k number;
+begin
+while i>=1
+loop
+j:=9;
+while j>i
+loop
+dbms_output.put(' ');
+j:=j-2;
+end loop;
+ 
+for k in 1..i
+loop
+dbms_output.put('*');
+end loop;
+dbms_output.new_line;
+i:=i-2;
+end loop;
+end;
+/
+
+    *
+   ***
+  *****
+*******
+*********
+*******
+  *****
+   ***
+    *
+
+declare
+n number:=10;
+i number:=1;
+j number;
+k number;
+begin
+while i<n
+loop
+j:=1;
+while j<n-i
+loop
+dbms_output.put(' ');
+j:=j+2;
+end loop;
+ 
+for k in 1..i
+loop
+dbms_output.put('*');
+end loop;
+dbms_output.new_line;
+i:=i+2;
+end loop;
+ 
+i:=7;
+while i>=1
+loop
+j:=9;
+while j>i
+loop
+dbms_output.put(' ');
+j:=j-2;
+end loop;
+ 
+for k in 1..i
+loop
+dbms_output.put('*');
+end loop;
+dbms_output.new_line;
+i:=i-2;
+end loop;
+end;
+/
