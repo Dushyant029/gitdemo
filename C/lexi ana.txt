@@ -1,0 +1,15 @@
+int main (){
+   int x,i,sum=0;
+   float y=1.2;
+   // double 1b = 1.1;
+   for(i=1;i<=10;i=i+1)
+   {	
+   	if(a>10)
+        {
+	   sum+=a;	
+	   count=count+1;
+        }
+    }
+    printf(sum/count);
+    return 0;
+}
